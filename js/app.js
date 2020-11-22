@@ -1,14 +1,16 @@
 const App = (() => {
 
+    // --Cache the DOM
     const userList =  document.querySelector('.user-list')
     const addPersonEl = document.querySelector('.add-person')
     const doubleMoneyEl = document.querySelector('.double-money')
+    const showMillionairesEl =document.querySelector('.show-millionaires')
     let data = []
 
     const eventListeners = () => {
         addPersonEl.addEventListener('click', getRandomPerson)
         doubleMoneyEl.addEventListener('click', doubleMoney)
-
+        showMillionairesEl.addEventListener('click', showMillionaires)
     }
 
     // -- Creates random person
@@ -30,12 +32,22 @@ const App = (() => {
         render();
     }
 
-    // -- Double the wealth
+    // -- Double the wealth using MAP
     const doubleMoney = () => {
         data = data.map(item => {
             return {
                 name: item.name,
                 money: item.money*2
+            }
+        })
+        render();
+    }
+
+    // -- Show only Millionaires on the list using Filter
+    const showMillionaires = () => {
+        data = data.filter(item => {
+            if(item.money > 1000000) {
+                return item
             }
         })
         render();
@@ -51,7 +63,7 @@ const App = (() => {
         eventListeners();
     }
 
-    // --Render the DOM
+    // --Render the DOM using FOREACH
     const render = (providedData = data) => {
         let markup = '<h2><strong>Person</strong> Wealth</h2>';
 
