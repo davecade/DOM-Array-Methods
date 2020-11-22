@@ -1,13 +1,17 @@
 const App = (() => {
 
     const userList =  document.querySelector('.user-list')
-    const addPerson = document.querySelector('.add-person')
+    const addPersonEl = document.querySelector('.add-person')
+    const doubleMoneyEl = document.querySelector('.double-money')
     let data = []
 
     const eventListeners = () => {
-        addPerson.addEventListener('click', getRandomPerson)
+        addPersonEl.addEventListener('click', getRandomPerson)
+        doubleMoneyEl.addEventListener('click', doubleMoney)
+
     }
 
+    // -- Creates random person
     const getRandomPerson = async () => {
         const response = await fetch('https://randomuser.me/api')
         const data = await response.json()
@@ -20,9 +24,20 @@ const App = (() => {
         addData(newUser)
     }
 
-    // -- Adds users to object array
+    // -- Adds person to object array
     const addData = (obj) => {
         data.push(obj)
+        render();
+    }
+
+    // -- Double the wealth
+    const doubleMoney = () => {
+        data = data.map(item => {
+            return {
+                name: item.name,
+                money: item.money*2
+            }
+        })
         render();
     }
 
@@ -49,12 +64,8 @@ const App = (() => {
     }
 
     return {
-        init,
-        getRandomPerson
+        init
     }
 })();
 
 App.init();
-App.getRandomPerson();
-App.getRandomPerson();
-App.getRandomPerson();
