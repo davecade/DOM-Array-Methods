@@ -5,15 +5,18 @@ const App = (() => {
     const addPersonEl = document.querySelector('.add-person')
     const doubleMoneyEl = document.querySelector('.double-money')
     const showMillionairesEl =document.querySelector('.show-millionaires')
+    const sortByRichestEl = document.querySelector('.sort-richest')
     let data = []
 
+    // --Event Listeners
     const eventListeners = () => {
         addPersonEl.addEventListener('click', getRandomPerson)
         doubleMoneyEl.addEventListener('click', doubleMoney)
         showMillionairesEl.addEventListener('click', showMillionaires)
+        sortByRichestEl.addEventListener('click', sortByRichest)
     }
 
-    // -- Creates random person
+    // -- Creates random person by fetiching from API
     const getRandomPerson = async () => {
         const response = await fetch('https://randomuser.me/api')
         const data = await response.json()
@@ -51,6 +54,11 @@ const App = (() => {
             }
         })
         render();
+    }
+
+    // -- Sort by Richest
+    const sortByRichest = () => {
+        
     }
 
     // --Format number as money - https://stackoverflow.com/questions/149055/how-to-format-numbers-as-currency-string
