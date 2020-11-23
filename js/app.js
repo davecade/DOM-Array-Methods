@@ -58,7 +58,8 @@ const App = (() => {
 
     // -- Sort by Richest
     const sortByRichest = () => {
-        
+        data = data.sort((a,b) => b.money-a.money)
+        render();
     }
 
     // --Format number as money - https://stackoverflow.com/questions/149055/how-to-format-numbers-as-currency-string
