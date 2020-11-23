@@ -74,5 +74,15 @@ h1 {
             font-size: 1.5rem;
         }
 
+        .total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.5rem;
+            background: #fff;
+            color: #000;
+            margin-top: 1rem;
+            padding: .5rem;
+        }
+
     }
 }

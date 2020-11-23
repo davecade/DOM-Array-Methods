@@ -6,6 +6,7 @@ const App = (() => {
     const doubleMoneyEl = document.querySelector('.double-money')
     const showMillionairesEl =document.querySelector('.show-millionaires')
     const sortByRichestEl = document.querySelector('.sort-richest')
+    const alculateTotalEl = document.querySelector('.total-wealth')
     let data = []
 
     // --Event Listeners
@@ -14,6 +15,7 @@ const App = (() => {
         doubleMoneyEl.addEventListener('click', doubleMoney)
         showMillionairesEl.addEventListener('click', showMillionaires)
         sortByRichestEl.addEventListener('click', sortByRichest)
+        alculateTotalEl.addEventListener('click', calculateTotal)
     }
 
     // -- Creates random person by fetiching from API
@@ -60,6 +62,18 @@ const App = (() => {
     const sortByRichest = () => {
         data = data.sort((a,b) => b.money-a.money)
         render();
+    }
+
+    // -- Calculate total wealth
+    const calculateTotal = () => {
+        let elem = document.createElement("div")
+        elem.classList.add('total')
+        let result = data.reduce((accum, obj) => {
+            return accum + obj.money
+        }, 0)
+
+        elem.innerHTML = `<strong>TOTAL:</strong> ${formatMoney(result)}`
+        userList.appendChild(elem)
     }
 
     // --Format number as money - https://stackoverflow.com/questions/149055/how-to-format-numbers-as-currency-string
